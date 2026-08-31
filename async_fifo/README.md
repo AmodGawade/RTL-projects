@@ -21,9 +21,8 @@ async_fifo/
 │   └── synth/                -- Vivado non-project-mode synthesis flow
 └── docs/
     ├── architecture.md       -- block diagram, design decisions, corner cases
-    ├── cdc_notes.md           -- the whiteboard-level CDC explanation (read this first)
-    ├── verification.md       -- verification strategy + toolchain gotchas found along the way
-    └── prep.md                -- 60s/5min explanations, 15+ Q&A, whiteboard problems
+    ├── cdc_notes.md           -- CDC technique explanations (read this first)
+    └── verification.md       -- verification strategy + toolchain gotchas found along the way
 ```
 
 ## Running the testbench

@@ -19,8 +19,7 @@ axi_apb_interconnect/
 │   └── synth/                     -- Vivado non-project-mode synthesis flow
 └── docs/
     ├── architecture.md            -- block diagram, address map, design decisions
-    ├── verification.md            -- verification strategy + 2 real bugs found and fixed
-    └── prep.md                     -- 60s/5min explanations, 15+ Q&A, whiteboard problems
+    └── verification.md            -- verification strategy + 2 real bugs found and fixed
 ```
 
 ## Running the testbench

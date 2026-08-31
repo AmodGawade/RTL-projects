@@ -57,11 +57,9 @@ registers that may never have been written yet, and the shadow model (correctly)
 those. **Fixed** by adding an explicit reset loop (`for (r) regs[r] <= '0`) to both modules' reset
 branch.
 
-**Why this matters**: neither bug was hypothesized in advance — both were
-found by actually running the testbench and reading what it reported, exactly the discipline the
-async FIFO project also demonstrates (see `../async_fifo/docs/verification.md`'s two toolchain/RTL
-findings). This is the answer to "tell me about a bug you found" that's backed by an actual log,
-not a rehearsed anecdote.
+**Why this matters**: neither bug was hypothesized in advance — both were found by actually
+running the testbench and reading what it reported, exactly the discipline the async FIFO project
+also demonstrates (see `../async_fifo/docs/verification.md`'s two toolchain/RTL findings).
 
 ## Functional coverage that would matter
 
@@ -80,8 +78,7 @@ not a rehearsed anecdote.
 - An arbiter that grants the wrong master under simultaneous request (Phase 3 exercises this
   directly, with a shadow model per-region so an actually-swapped grant would show up as a data
   mismatch on the follow-up read).
-- Address decode off-by-one at a region boundary (not currently swept exhaustively — see
-  `docs/prep.md` for what a more thorough version would add).
+- Address decode off-by-one at a region boundary (not currently swept exhaustively).
 - A response routed back to the wrong master (Phase 3/4's contention design would catch this: each
   master's read-back is checked against ITS OWN write, so a misrouted response reads as either a
   hang on one master or a wrong-data mismatch on the other).

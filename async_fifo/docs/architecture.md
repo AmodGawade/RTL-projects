@@ -8,8 +8,7 @@ Design goals this covers:
 
 This follows the classic **Cummings dual-clock FIFO architecture** ("Simulation and Synthesis
 Techniques for Asynchronous FIFO Design", SNUG 2002) — the standard, textbook structure for this
-problem, and the one you're most likely expected to derive on a whiteboard. Nothing here is
-employer-specific; this is generic, public-domain FIFO design.
+problem.
 
 ## Top-level architecture
 

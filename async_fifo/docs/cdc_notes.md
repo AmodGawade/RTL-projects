@@ -1,7 +1,6 @@
 # CDC Notes — Async FIFO
 
-This is the whiteboard-level explanation: why each CDC technique in this design exists, in the
-order these points are likely to be probed.
+Why each CDC technique in this design exists.
 
 ## 1. Metastability — the root problem
 
@@ -111,16 +110,16 @@ scoreboard's end-to-end data check passed. The two domains simply took a few ext
 with each other about the FIFO's overall state, which is inherent to the CDC design, not a
 consequence of anything broken.
 
-## 8. Likely follow-up pressure points
+## 8. Related design considerations
 
-- "What if the two clocks share a common divisor / are related?" — this design still works (Gray
-  code + synchronizers don't assume unrelated clocks), but it's *more conservative than necessary*
-  in that case; a same-clock or integer-ratio FIFO could use a simpler, lower-latency design.
-- "What's the actual MTBF of your synchronizer?" — requires the flop's metastability resolution time
-  constant (a real, measured silicon/library characteristic, not something derivable from RTL alone)
-  — the honest answer here is "I'd pull that from the standard-cell library's characterization data,
-  not from the RTL," which is itself the correct, defensible answer.
-- "Why not use a mutex/semaphore-style handshake instead of Gray code?" — a full request/acknowledge
-  handshake per transfer works but costs much more latency per transfer than a free-running pointer
-  scheme; Gray-code pointers amortize the synchronization cost across a whole burst instead of paying
-  a handshake round-trip per element.
+- **Related/common-divisor clocks**: this design still works if the two clocks share a common
+  divisor (Gray code + synchronizers don't assume unrelated clocks), but it's *more conservative
+  than necessary* in that case; a same-clock or integer-ratio FIFO could use a simpler,
+  lower-latency design.
+- **Synchronizer MTBF**: computing the actual MTBF requires the flop's metastability resolution
+  time constant — a real, measured silicon/standard-cell-library characteristic, not something
+  derivable from RTL alone.
+- **Handshake-based alternative**: a full request/acknowledge handshake per transfer works but
+  costs much more latency per transfer than a free-running pointer scheme; Gray-code pointers
+  amortize the synchronization cost across a whole burst instead of paying a handshake round-trip
+  per element.

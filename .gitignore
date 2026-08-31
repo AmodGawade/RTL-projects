@@ -6,3 +6,6 @@ sim/work/
 *.fst
 *.log
 *.out
+
+# Interview-prep notes (Q&A, whiteboard problems) -- kept locally only, not for GitHub
+prep.md
