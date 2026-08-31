@@ -22,8 +22,13 @@ set_clock_groups -asynchronous -group [get_clocks wr_clk] -group [get_clocks rd_
 # often ALSO want a per-path `set_max_delay -datapath_only` on just the two synchronizer input nets
 # below, so a stray change elsewhere doesn't accidentally regroup the clocks and silently reintroduce
 # a timed cross-domain path:
-set_max_delay -datapath_only -from [get_pins u_sync_wptr_to_rd/meta_stage_reg*/D] 10.0
-set_max_delay -datapath_only -from [get_pins u_sync_rptr_to_wr/meta_stage_reg*/D] 10.0
+set_max_delay -datapath_only \
+  -from [get_cells u_wptr_full/wptr_gray_reg*] \
+  -to   [get_cells u_sync_wptr_to_rd/meta_stage_reg*] 10.0
+
+set_max_delay -datapath_only \
+  -from [get_cells u_rptr_empty/rptr_gray_reg*] \
+  -to   [get_cells u_sync_rptr_to_wr/meta_stage_reg*] 10.0
 
 # ---- Reset synchronizer paths: same treatment, reset is also asynchronous by design ----
 set_false_path -from [get_ports wr_arst_n]
