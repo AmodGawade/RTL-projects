@@ -1,0 +1,8 @@
+# Icarus Verilog sim build output (async_fifo/sim/work, axi_apb_interconnect/sim/work)
+sim/work/
+
+# Waveform dumps and simulator logs, if a run ever adds them
+*.vcd
+*.fst
+*.log
+*.out
