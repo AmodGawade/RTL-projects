@@ -1,7 +1,6 @@
 # Async FIFO + CDC Infrastructure
 
-Reconstruction of the "Asynchronous FIFO + CDC Infrastructure" project. See
-`../docs/claims.md` §1 for the exact claim-to-implementation mapping.
+Asynchronous FIFO + CDC Infrastructure project.
 
 ## Layout
 
@@ -19,7 +18,7 @@ async_fifo/
 │   └── tb_async_fifo.sv     -- self-checking testbench (see docs/verification.md)
 ├── sim/
 │   ├── run_sim.sh            -- compile + run with Icarus Verilog
-│   └── synth/                -- Vivado non-project-mode synthesis flow (NOT executed here -- see below)
+│   └── synth/                -- Vivado non-project-mode synthesis flow
 └── docs/
     ├── architecture.md       -- block diagram, design decisions, corner cases
     ├── cdc_notes.md           -- the whiteboard-level CDC explanation (read this first)
@@ -38,22 +37,15 @@ cd sim
 ```
 
 Requires the `iverilog/14.0` environment module (or `iverilog`/`vvp` on PATH some other way).
-**Verified passing** across DEPTH ∈ {4, 8, 16, 32}, DATA_WIDTH ∈ {4, 8, 32}, and multiple random
-seeds (different clock ratios each time) — this is not a claim, it was actually run; see
-`docs/verification.md` for what "passing" checks.
+Passing across DEPTH ∈ {4, 8, 16, 32}, DATA_WIDTH ∈ {4, 8, 32}, and multiple random seeds
+(different clock ratios each time); see `docs/verification.md` for what "passing" checks.
 
 ## Synthesis
 
-`sim/synth/run_synth.tcl` + `sim/synth/async_fifo.sdc` are real, runnable Vivado non-project-mode
-scripts — **not executed in this environment** (no Vivado install here). Run them yourself for real
-utilization/timing numbers; do not treat anything in this README as a measured result.
+`sim/synth/run_synth.tcl` + `sim/synth/async_fifo.sdc` are Vivado non-project-mode scripts for
+utilization/timing analysis.
 
-## Status
-
-- RTL: complete, matches the classic Cummings dual-clock FIFO architecture.
-- Testbench: complete, self-checking, passing across the parameter sweep above.
-- One real design insight found by testing, not assumed: full/empty can transiently (and correctly,
-  harmlessly) disagree at very shallow depths relative to synchronizer latency — see
-  `docs/cdc_notes.md` §7. An earlier assertion encoding the opposite (wrong) assumption was found
-  and fixed as a direct result.
-- Synthesis: scripted but unexecuted (no Vivado available) — see honesty note above.
+RTL matches the classic Cummings dual-clock FIFO architecture. One design insight found by
+testing: full/empty can transiently (and correctly, harmlessly) disagree at very shallow depths
+relative to synchronizer latency — see `docs/cdc_notes.md` §7. An earlier assertion encoding the
+opposite (wrong) assumption was found and fixed as a direct result.

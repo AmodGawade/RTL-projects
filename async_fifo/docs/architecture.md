@@ -1,6 +1,6 @@
 # Async FIFO + CDC Infrastructure — Architecture
 
-Source claims this map to (see `docs/claims.md` §1 for the full table):
+Design goals this covers:
 - Parameterized async FIFO, independent read/write clocks
 - Gray-coded pointers, synchronized CDC control signals
 - Robust reset + full/empty handling across clock domains

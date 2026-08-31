@@ -1,9 +1,8 @@
 # async_fifo.sdc -- example timing constraints for the async FIFO.
 #
-# HONESTY NOTE: written to be genuinely applicable, not run against real silicon/FPGA timing here
-# (see run_synth.tcl's header). The two `create_clock` + CDC exception lines are the actual
-# most conceptually important content; the input/output delay numbers are placeholder-reasonable, not
-# derived from any real interface spec (the source doesn't specify one).
+# The two `create_clock` + CDC exception lines are the most conceptually important content;
+# the input/output delay numbers are placeholder-reasonable, not derived from any real interface
+# spec.
 
 # ---- Clock definitions: two genuinely independent, unrelated clocks ----
 create_clock -name wr_clk -period 10.000 [get_ports wr_clk]

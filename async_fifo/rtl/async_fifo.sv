@@ -4,7 +4,7 @@
 // Architecture, design decisions, and corner cases are documented in docs/architecture.md;
 // CDC-specific reasoning (why Gray code, why 2-flop, metastability) is in docs/cdc_notes.md.
 //
-// Source claims this satisfies (docs/claims.md #1):
+// Design goals this satisfies:
 //   - parameterized, independent read/write clock domains
 //   - Gray-coded pointers, synchronized CDC control signals
 //   - robust reset + full/empty handling across domains

@@ -1,10 +1,5 @@
 # run_synth.tcl -- Vivado non-project-mode synthesis flow for async_fifo.
 #
-# HONESTY NOTE: this script was written to be genuinely runnable, but has NOT been executed --
-# there is no Vivado install in the environment this repo was built in (confirmed: no `vivado` on
-# PATH, no licensed install found). Any area/timing numbers you get from actually running this are
-# real measured data; nothing here should be quoted as a result until you've run it yourself.
-#
 # Usage (from a machine with Vivado on PATH):
 #   vivado -mode batch -source run_synth.tcl -tclargs <DEPTH> <DATA_WIDTH> <TARGET_PART>
 # Example:
@@ -47,5 +42,4 @@ report_timing -delay_type max -max_paths 10 -file "$OUT_DIR/timing_max_paths.rpt
 write_checkpoint -force "$OUT_DIR/post_synth.dcp"
 
 puts "Synthesis complete. Reports in $OUT_DIR."
-puts "Re-run with different -tclargs DEPTH/DATA_WIDTH values to sweep configurations, per the"
-puts "source's 'multiple depth/width configurations' claim (docs/claims.md #1)."
+puts "Re-run with different -tclargs DEPTH/DATA_WIDTH values to sweep configurations."

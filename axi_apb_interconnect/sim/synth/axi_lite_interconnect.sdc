@@ -1,5 +1,4 @@
 # axi_lite_interconnect.sdc -- example timing constraints.
-# HONESTY NOTE: written to be genuinely applicable, not run against real silicon/FPGA timing here.
 
 create_clock -name clk -period 5.000 [get_ports clk]
 

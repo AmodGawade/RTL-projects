@@ -25,7 +25,7 @@ flop's resolution time constant, the clock frequency, and the toggle rate of the
 to 3+ stages trades one more cycle of latency for another large multiplicative improvement in MTBF —
 worth it in safety-critical or very-high-frequency designs; 2 stages is the standard baseline
 assumption when a source spec just says "synchronized" without more detail (exactly this project's
-situation — see `docs/claims.md`).
+situation).
 
 ## 3. Why Gray code, not binary, for the crossing pointers
 

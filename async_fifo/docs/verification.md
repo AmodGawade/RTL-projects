@@ -72,7 +72,7 @@ desynchronizes the two domains' view of the FIFO's contents by construction; the
 because there is nothing correct to check it against — this is flagged explicitly as a limitation,
 not silently skipped. A production design that needs safe reset with in-flight data would need
 additional handshaking (e.g. a "quiesce" protocol both sides participate in before either resets) --
-out of scope for what the source claims.
+out of scope here.
 
 ## Realistic bugs this testbench is specifically built to catch
 

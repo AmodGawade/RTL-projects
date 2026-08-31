@@ -81,7 +81,7 @@ not a rehearsed anecdote.
   directly, with a shadow model per-region so an actually-swapped grant would show up as a data
   mismatch on the follow-up read).
 - Address decode off-by-one at a region boundary (not currently swept exhaustively — see
-  `docs/prep.md`'s honest gap list for what a more thorough version would add).
+  `docs/prep.md` for what a more thorough version would add).
 - A response routed back to the wrong master (Phase 3/4's contention design would catch this: each
   master's read-back is checked against ITS OWN write, so a misrouted response reads as either a
   hang on one master or a wrong-data mismatch on the other).

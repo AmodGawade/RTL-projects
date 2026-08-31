@@ -1,6 +1,6 @@
 # AXI4-Lite SoC Interconnect + APB Subsystem — Architecture
 
-Source claims this map to (see `../docs/claims.md` §2 for the full table):
+Design goals this covers:
 - Parameterized 2-master AXI4-Lite interconnect: address decoding, arbitration, backpressure
 - Routes read/write transactions across 3 memory-mapped slaves
 - AXI4-Lite-to-APB bridge + APB peripheral register bank, configurable address mapping, error handling
@@ -41,9 +41,8 @@ Only ONE master's write transaction, and (independently) only ONE master's read 
 with independent simultaneous paths per master. The arbiter grants exclusive use of the downstream
 write (or read) path to one master for the duration of one full transaction (AW+W+B, or AR+R), then
 re-arbitrates. This is the simplest reasonable interpretation of "arbitration and backpressure
-handling" for a 2-master interconnect (see `../docs/claims.md` §2) — a full
-independent-per-master crossbar would be architecturally heavier than what a 2-master, 3-slave
-design needs, and the source doesn't claim outstanding-transaction-level concurrency.
+handling" for a 2-master interconnect — a full independent-per-master crossbar would be
+architecturally heavier than what a 2-master, 3-slave design needs.
 
 ## Major modules
 
@@ -54,8 +53,7 @@ design needs, and the source doesn't claim outstanding-transaction-level concurr
 | `axi_lite_to_apb_bridge` | Converts one AXI4-Lite slave-side transaction into an APB SETUP/ACCESS sequence |
 | `apb_regbank` | APB completer: a small addressable register bank with error handling on illegal offsets |
 
-## Address map (see claims.md's "Assumption made" column — source doesn't specify
-## exact offsets, this is a documented, simple, equal-size 3-way split)
+## Address map (a documented, simple, equal-size 3-way split)
 
 | Region | Base | Size | Target |
 |---|---|---|---|
@@ -116,7 +114,7 @@ can have a write and a read both attempted at once; each is arbitrated on its ow
 ## Key design decisions
 
 - **Fixed-priority arbitration (master 0 > master 1), not round-robin** — simplest reasonable choice
-  for a 2-master design (see claims.md); round-robin is discussed in
+  for a 2-master design; round-robin is discussed in
   `axi_lite_interconnect.sv`'s comments as the natural alternative if fairness under sustained
   contention from both masters ever mattered, but isn't implemented as the default.
 - **Whole-transaction granularity arbitration**, not per-beat — since AXI4-Lite has no burst
